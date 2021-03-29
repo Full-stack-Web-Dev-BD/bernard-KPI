@@ -29,6 +29,7 @@
     "firebase": "^8.2.1",
     "i18next": "^19.8.4",
     "immutability-helper": "^3.1.1",
+    "jwt-decode": "^3.1.2",
     "lodash.range": "^3.2.0",
     "mdi-react": "^7.4.0",
     "moment": "^2.26.0",
@@ -90,6 +91,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "react-app-rewired": "^2.1.8"
   },
+  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },

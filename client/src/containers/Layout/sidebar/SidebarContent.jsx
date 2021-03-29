@@ -65,6 +65,28 @@ const SidebarContent = ({
         />
       </ul>
       <ul className="sidebar__block">
+        <SidebarLink title="Main Dashboard" newLink icon="book" route="/todo" onClick={hideSidebar} />
+        <SidebarCategory title="Business Development" icon="diamond" sidebarCollapse={sidebarCollapse}>
+          <SidebarLink title="Lending Report (Charts) " route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Lending Report (Table)" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Lending Gantt Chart" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Funding Request" route="/ui/alerts" onClick={hideSidebar} />
+        </SidebarCategory>
+        <SidebarCategory title="Portfolio Management " icon="diamond" sidebarCollapse={sidebarCollapse}>
+          <SidebarLink title="Portfolio Report (Charts & Map)" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Portfolio Report (Table)" route="/ui/alerts" onClick={hideSidebar} />
+        </SidebarCategory>
+        <SidebarCategory title="Scorecard Report" icon="diamond" sidebarCollapse={sidebarCollapse}>
+          <SidebarLink title="KPI Metric" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="KPI Performance Grid" route="/ui/alerts" onClick={hideSidebar} />
+        </SidebarCategory>
+        <SidebarCategory title="Activity Track Report " icon="diamond" sidebarCollapse={sidebarCollapse}>
+          <SidebarLink title="Project Issue Report" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Mission Program" route="/ui/alerts" onClick={hideSidebar} />
+          <SidebarLink title="Task Management" route="/ui/alerts" onClick={hideSidebar} />
+        </SidebarCategory>
+      </ul>
+      <ul className="sidebar__block">
         <SidebarCategory title="UI Elements" icon="diamond" sidebarCollapse={sidebarCollapse}>
           <SidebarLink title="Alerts" route="/ui/alerts" onClick={hideSidebar} />
           <SidebarLink title="Buttons" route="/ui/buttons" onClick={hideSidebar} />

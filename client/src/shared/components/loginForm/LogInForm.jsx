@@ -14,11 +14,15 @@ const LogInForm = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
+  // form data
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const showPasswordToggle = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <Form className="form login-form" onSubmit={handleSubmit}>
+    <Form className="form login-form" onSubmit={e => handleSubmit(e, { email, password })}>
       <Alert
         color="danger"
         isOpen={!!errorMessage || !!errorMsg}
@@ -33,10 +37,12 @@ const LogInForm = ({
             <AccountOutlineIcon />
           </div>
           <Field
+            onChange={e => setEmail(e.target.value)}
+            required
             name="username"
             component="input"
             type={typeFieldUser}
-            placeholder={fieldUser}
+            placeholder="Email"
             className="input-without-border-radius"
           />
         </div>
@@ -48,6 +54,8 @@ const LogInForm = ({
             <KeyVariantIcon />
           </div>
           <Field
+            onChange={e => setPassword(e.target.value)}
+            required
             name="password"
             component="input"
             type={showPassword ? 'text' : 'password'}
@@ -75,19 +83,8 @@ const LogInForm = ({
         </div>
       </div>
       <div className="account__btns">
-        {
-          form === 'modal_login'
-            ? <Button className="account__btn" type="submit" color="primary">Sign In</Button>
-            : (
-              <NavLink className="account__btn btn btn-primary" to="/online_marketing_dashboard">
-                Sign In
-              </NavLink>
-            )
-        }
-
-        <NavLink className="btn btn-outline-primary account__btn" to="/register">Create
-          Account
-        </NavLink>
+        <Button className="account__btn" type="submit" color="primary">Sign In</Button>
+        <NavLink className="btn btn-outline-primary account__btn" to="/register">Create Account </NavLink>
       </div>
     </Form>
   );

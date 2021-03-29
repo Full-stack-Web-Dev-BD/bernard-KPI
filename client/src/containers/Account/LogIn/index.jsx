@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
-import FirebaseIcon from 'mdi-react/FirebaseIcon';
 import withAuthFirebase from '@/shared/components/auth/withAuthFirebase';
 import { useAuth0 } from '@/shared/components/auth/withAuth0';
 import Loading from '@/shared/components/Loading';
@@ -9,15 +8,26 @@ import LogInForm from '@/shared/components/loginForm/LogInForm';
 import GoogleAuthBtn from '../AuthBtn/googleAuthBtn';
 import FacebookAuthBtn from '../AuthBtn/fbAuthBtn';
 
-const auth0Icon = `${process.env.PUBLIC_URL}/img/auth0.svg`;
-
 const LogIn = ({ changeIsOpenModalFireBase }) => {
+  const [error, setError] = useState({});
+
   const {
     loginWithRedirect, loading,
   } = useAuth0();
   if (loading) {
     return (<Loading loading={loading} />);
   }
+  const onSubmit = (e, info) => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/api/user/login', info)
+      .then((response) => {
+        window.localStorage.setItem('kpi_token', response.data.token);
+        window.location.href = '/dashboard';
+      })
+      .catch((err) => {
+        setError(err.response.data);
+      });
+  };
   return (
     <div className="account account--not-photo">
       <div className="account__wrapper">
@@ -30,8 +40,27 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
             </h3>
             <h4 className="account__subhead subhead">Start your business easily</h4>
           </div>
+
+
+          <div className="form__form-group">
+
+            {
+              error.message
+                ? <p className="text-danger"> {error.message} </p> : ''
+            }
+            {
+              error.email
+                ? <p className="text-danger"> {error.email} </p> : ''
+            }
+
+            {
+              error.password
+                ? <p className="text-danger"> {error.password} </p> : ''
+            }
+          </div>
           <LogInForm
-            onSubmit
+            handleSubmit={onSubmit}
+            error={error}
             form="log_in_form"
           />
           <div className="account__or">
@@ -40,15 +69,6 @@ const LogIn = ({ changeIsOpenModalFireBase }) => {
           <div className="account__social">
             <FacebookAuthBtn />
             <GoogleAuthBtn />
-            <Button
-              className="account__social-btn account__social-btn--firebase"
-              onClick={changeIsOpenModalFireBase}
-            >
-              <FirebaseIcon />
-            </Button>
-            <Button className="account__social-btn account__social-btn--auth0" onClick={() => loginWithRedirect({})}>
-              <img className="customizer__btn-icon" src={auth0Icon} alt="icon" />
-            </Button>
           </div>
         </div>
       </div>

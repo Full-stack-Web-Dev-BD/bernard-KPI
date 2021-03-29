@@ -94,7 +94,7 @@ router.post('/login', (req, res) => {
 		.then(user => {
 			if (!user) {
 				errors.email = 'User not found';
-				return res.status(404).json(errors);
+				return res.status(400).json(errors);
 			}
 			if (!user.access) return res.json({ message: 'You are temporarily disabled ! Please contact the admin . ' })
 			bcrypt.compare(password, user.password)

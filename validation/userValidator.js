@@ -12,7 +12,7 @@ const registervalidator = (info) => {
     }
     if (!info.password) {
         errors.password = "Password requird"
-    } else if (info.password.length < 6) {
+    } else if (info.password.length < 5) {
         errors.password = "Password Length should be gatter then 6 Charecter"
     }
     return {
