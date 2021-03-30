@@ -35,11 +35,11 @@
     "passport-jwt": "^4.0.0",
     "react-to-print": "^2.12.1",
     "socket.io": "^3.1.1",
-    "validator": "^13.1.17"
-  },
-  "devDependencies": {
+    "validator": "^13.1.17",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
   },
   "engines": {
     "node": "12.19.0"
