@@ -28,14 +28,6 @@ const CreateTableData = () => {
         Header: 'Age',
         accessor: 'age',
         disableGlobalFilter: true,
-        Footer: (info) => {
-          const totalAge = useMemo(
-            () => info.rows.reduce((sum, row) => Number(row.values.age) + sum, 0),
-            [info.rows],
-          );
-          const age = Math.round(totalAge / info.flatRows.length);
-          return <span>{age}</span>;
-        },
       },
       {
         Header: 'Date',
